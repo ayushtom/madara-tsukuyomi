@@ -187,6 +187,11 @@ const createWindow = async () => {
   new AppUpdater();
 };
 
+// Receive the file path from the renderer process
+ipcMain.on('move-file', (event, filePath) => {
+  return Madara.moveFile(filePath);
+});
+
 /**
  * Add event listeners...
  */

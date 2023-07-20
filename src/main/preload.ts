@@ -20,6 +20,7 @@ const electronHandler = {
         ipcRenderer.invoke('release-exists', config),
       childProcessInMemory: () => ipcRenderer.invoke('child-process-in-memory'),
       sendTweet: () => ipcRenderer.invoke('send-tweet'),
+      moveFile: (file: any) => ipcRenderer.send('move-file', file),
     },
     madaraApp: {
       download: (appId: string) =>

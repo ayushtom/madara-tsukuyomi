@@ -83,7 +83,6 @@ bootnodes => show list of bootnode identifiers
 */
 export default function Settings({ onClose }: { onClose: any }) {
   const [releases, setReleases] = useState([]);
-
   const booleanValues = [
     { value: 'true', label: 'true' },
     { value: 'false', label: 'false' },
@@ -160,6 +159,19 @@ export default function Settings({ onClose }: { onClose: any }) {
               onChange={(value: any) =>
                 configKeyUpdate('RPCExternal', value.value)
               }
+            />
+          </SettingContainer>
+
+          {/* chain-spec */}
+          <SettingContainer>
+            <SettingHeading>RPC External</SettingHeading>
+            <input
+              type="file"
+              onChange={async (e) => {
+                await window.electron.ipcRenderer.madara.moveFile(
+                  e.target.files[0].path
+                );
+              }}
             />
           </SettingContainer>
 

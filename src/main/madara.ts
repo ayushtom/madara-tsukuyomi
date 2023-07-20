@@ -234,3 +234,23 @@ export async function uploadFilesToStorageFirebase(file: Buffer) {
   const res = await getDownloadURL(snapshot.ref);
   return res;
 }
+
+export async function moveFile(fileInput: any) {
+  if (!fileInput) {
+    console.log('Please select a file before moving.');
+    return;
+  }
+
+  const fileName = path.basename(fileInput);
+  const rootPath = '/Users/ayushtomar/.madara'; // Replace this with the root path of your machine
+
+  const destinationPath = path.join(rootPath, fileName);
+
+  fs.rename(fileInput, destinationPath, (err) => {
+    if (err) {
+      console.log('Error moving the file:', err.message);
+    } else {
+      console.log('File moved successfully.');
+    }
+  });
+}
